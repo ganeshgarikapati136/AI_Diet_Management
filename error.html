@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f8d7da;
+            color: #721c24;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+        .container {
+            background-color: #f5c6cb;
+            padding: 30px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+        a {
+            margin-top: 20px;
+            display: inline-block;
+            background: #721c24;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background: #501414;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Oops! Something went wrong.</h1>
+        <p>{{ error }}</p>
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Diet Plan - NutriGuide AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#10B981',
+                        accent: '#F59E0B',
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen font-sans">
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Your Personalized Diet Plan</h1>
+                <p class="text-lg text-gray-600">Crafted specifically for you, {{ name }}</p>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Diet Plan Card -->
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
+                <!-- Plan Overview -->
+                <div class="p-6 bg-gradient-to-r from-primary to-secondary text-white">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div>
+                            <h2 class="text-2xl font-semibold">Your Daily Nutrition</h2>
+                            <p class="opacity-90">Follow this plan for optimal results</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                            <span class="font-medium">Day 1</span> of 7
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meals -->
+                <div class="p-6 md:p-8">
+                    <!-- Breakfast -->
+                    <div class="mb-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-sun text-yellow-500"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800">Breakfast</h3>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            {% for item in diet_plan.Breakfast %}
+                            <div class="flex items-start p-4 border border-gray-100 rounded-xl hover:shadow-md transition-shadow">
+                                <img src="{{ url_for('static', filename=item.lower().replace(' ', '_') + '.jpg') }}" 
+                                     alt="{{ item }}" 
+                                     onerror="this.style.display='none'"
+                                     class="w-16 h-16 object-cover rounded-lg mr-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-800">{{ item }}</h4>
+                                    <p class="text-sm text-gray-500 mt-1">High in protein and fiber to start your day right</p>
+                                    <div class="flex items-center mt-2 text-sm text-gray-500">
+                                        <span class="mr-3"><i class="fas fa-fire text-orange-400 mr-1"></i> 320 cal</span>
+                                        <span><i class="fas fa-clock text-blue-400 mr-1"></i> 10 min</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Lunch -->
+                    <div class="mb-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-utensils text-blue-500"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800">Lunch</h3>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            {% for item in diet_plan.Lunch %}
+                            <div class="flex items-start p-4 border border-gray-100 rounded-xl hover:shadow-md transition-shadow">
+                                <img src="{{ url_for('static', filename=item.lower().replace(' ', '_') + '.jpg') }}" 
+                                     alt="{{ item }}" 
+                                     onerror="this.style.display='none'"
+                                     class="w-16 h-16 object-cover rounded-lg mr-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-800">{{ item }}</h4>
+                                    <p class="text-sm text-gray-500 mt-1">Balanced meal to keep you energized</p>
+                                    <div class="flex items-center mt-2 text-sm text-gray-500">
+                                        <span class="mr-3"><i class="fas fa-fire text-orange-400 mr-1"></i> 450 cal</span>
+                                        <span><i class="fas fa-clock text-blue-400 mr-1"></i> 20 min</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="mb-10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-moon text-purple-500"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800">Dinner</h3>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            {% for item in diet_plan.Dinner %}
+                            <div class="flex items-start p-4 border border-gray-100 rounded-xl hover:shadow-md transition-shadow">
+                                <img src="{{ url_for('static', filename=item.lower().replace(' ', '_') + '.jpg') }}" 
+                                     alt="{{ item }}" 
+                                     onerror="this.style.display='none'"
+                                     class="w-16 h-16 object-cover rounded-lg mr-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-800">{{ item }}</h4>
+                                    <p class="text-sm text-gray-500 mt-1">Light and nutritious to end your day</p>
+                                    <div class="flex items-center mt-2 text-sm text-gray-500">
+                                        <span class="mr-3"><i class="fas fa-fire text-orange-400 mr-1"></i> 380 cal</span>
+                                        <span><i class="fas fa-clock text-blue-400 mr-1"></i> 15 min</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Snacks -->
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-apple-alt text-green-500"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800">Snacks</h3>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            {% for item in diet_plan.Snacks %}
+                            <div class="flex items-start p-4 border border-gray-100 rounded-xl hover:shadow-md transition-shadow">
+                                <img src="{{ url_for('static', filename=item.lower().replace(' ', '_') + '.jpg') }}" 
+                                     alt="{{ item }}" 
+                                     onerror="this.style.display='none'"
+                                     class="w-16 h-16 object-cover rounded-lg mr-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-800">{{ item }}</h4>
+                                    <p class="text-sm text-gray-500 mt-1">Healthy options between meals</p>
+                                    <div class="flex items-center mt-2 text-sm text-gray-500">
+                                        <span class="mr-3"><i class="fas fa-fire text-orange-400 mr-1"></i> 150 cal</span>
+                                        <span><i class="fas fa-clock text-blue-400 mr-1"></i> 5 min</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+                <a href="/" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-medium rounded-lg hover:opacity-90 transition-all text-center">
+                    <i class="fas fa-home mr-2"></i> Back to Home
+                </a>
+                <button class="px-6 py-3 bg-white border border-primary text-primary font-medium rounded-lg hover:bg-gray-50 transition-all">
+                    <i class="fas fa-print mr-2"></i> Print Plan
+                </button>
+                <button class="px-6 py-3 bg-white border border-green-500 text-green-500 font-medium rounded-lg hover:bg-green-50 transition-all">
+                    <i class="fas fa-bell mr-2"></i> Set Reminders
+                </button>
+            </div>
+
+            <!-- Tips -->
+            <div class="mt-12 bg-blue-50 rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3"> Pro Tips for Success</h3>
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Drink at least 8 glasses of water daily</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Get 7-8 hours of sleep each night</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                        <span>Combine with 30 minutes of daily exercise</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+            <p> 2023 NutriGuide AI. All rights reserved.</p>
+            <p class="mt-1">This information is not intended to replace professional medical advice.</p>
+        </div>
+    </footer>
+</body>
+</html>
